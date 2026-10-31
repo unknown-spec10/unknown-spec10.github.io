@@ -25,7 +25,7 @@
       "slug": "career-guidance-ai",
       "name": "Career Guidance AI",
       "alias": "Zero-model parse",
-      "stack": "FastAPI · pgvector · Groq · Gemini · React · Docker",
+      "stack": "FastAPI · SQLAlchemy · pgvector · ONNX MiniLM · Caddy · React",
       "points": [
         "Deterministic parse: pdfplumber with a pdfminer and pdftotext fallback, plus OCR only when a page is scanned — zero model calls in the parse path.",
         "A confidence score gates everything downstream: 0.75 and above is accepted, 0.50 to 0.75 goes to human review, below that fails before any embedding or matching runs.",
@@ -56,7 +56,7 @@
       "slug": "insurance-document-handler",
       "name": "Insurance Policy Document Handler",
       "alias": "Versioned vault",
-      "stack": "FastAPI · AWS RDS/S3/SNS · Redis · PostgreSQL",
+      "stack": "FastAPI · PostgreSQL 15 · S3 · Redis · Alembic",
       "points": [
         "Versioned document store keyed by vehicle registration: upload assigns max+1, flips the previous row to superseded, and enforces uniqueness on (registration, type, version).",
         "S3 writes fan out concurrently inside the same database transaction, so a failure mid-upload rolls back every row while objects already written stay in the bucket — the trade-off is documented rather than hidden.",
