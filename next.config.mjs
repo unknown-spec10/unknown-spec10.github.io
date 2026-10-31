@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  output: "standalone",
+
+  // The published site is a static export for GitHub Pages; the container build
+  // path is gone. `next dev` is unaffected.
+  ...(process.env.PAGES_BUILD === "1" ? { output: "export", trailingSlash: true } : {}),
 
   // Security headers apply to every response, including static assets.
   // CSP note: the only inline script is the theme bootstrap that prevents a

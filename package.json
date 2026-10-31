@@ -7,7 +7,7 @@
     "studio": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "publish": "npm run build && node scripts/publish.mjs"
+    "publish": "node scripts/publish.mjs"
   },
   "dependencies": {
     "next": "^15.5.28",

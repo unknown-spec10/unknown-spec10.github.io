@@ -20,3 +20,7 @@ data/
 
 # one-time admin credential file
 .admin-credentials.txt
+
+# static export
+out/
+.pages-excluded/
