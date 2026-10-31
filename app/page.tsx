@@ -197,13 +197,13 @@ export default function Page() {
                           }
                         >
                           <figcaption>
-                            <span>{project.liveUrl ? "Live product" : "System diagram"}</span>
+                            <span>System diagram</span>
                             <span className="proj__cover-meta">{project.alias}</span>
                           </figcaption>
                           <div
                             className="proj__shot"
                             role="img"
-                            aria-label={`${project.name} — ${project.liveUrl ? "product interface" : "system diagram"}`}
+                            aria-label={`${project.name} — system architecture diagram`}
                           />
                         </figure>
                       ) : null}

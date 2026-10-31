@@ -29,7 +29,7 @@
       "points": [
         "Multi-stage resume parsing: pdfplumber with a Gemini Vision fallback, and semaphore-controlled asyncio.gather firing six parallel section-extraction prompts.",
         "N+1 queries removed from the recommendation engine, plus a dual-layer embedding cache in front of Gemini.",
-        "51,000-line backend, 91 REST endpoints, 31 tables, a 106-test suite — blocking LLM and SSE calls offloaded to worker threads."
+        "28,016-line backend, 72 REST endpoints, 304 tests — blocking LLM and SSE calls offloaded to worker threads."
       ],
       "metrics": [
         {
@@ -47,8 +47,8 @@
           "now": "~99%"
         }
       ],
-      "coverImage": "/uploads/career-sync-dark.png",
-      "coverImageLight": "/uploads/career-sync-light.png",
+      "coverImage": "/uploads/career-guidance-ai.png",
+      "coverImageLight": "/uploads/career-guidance-ai-light.png",
       "liveUrl": "https://career-guidance-flame.vercel.app",
       "repoUrl": "https://github.com/unknown-spec10/Career-Guidance",
       "published": true
@@ -61,7 +61,7 @@
       "stack": "FastAPI · AWS RDS/S3/SNS · Redis · PostgreSQL",
       "points": [
         "High-concurrency KYC portal: concurrent S3 presigned URL generation through asyncio.gather across a fully async stack (asyncpg, aioboto3).",
-        "Redis dashboard caching with SCAN-driven invalidation and composite indexes; SHA-256 duplicate blocking; five-year retention cleanup. 8,300 lines, 27 endpoints."
+        "Redis dashboard caching with SCAN-driven invalidation and composite indexes; SHA-256 checksums on stored files; five-year retention cleanup. 5,089 lines, 36 endpoints."
       ],
       "metrics": [
         {
@@ -92,7 +92,7 @@
       "stack": "FastAPI · PostgreSQL · APScheduler · asyncpg",
       "points": [
         "Async ETL service replacing a fragile Appfire OData connector: a local Postgres warehouse, advisory locks to stop overlapping scheduler runs, and schema-drift alerts into Slack and Teams.",
-        "Jira API resilience built in — 10 req/s client-side pacing, five-attempt exponential backoff, JSONB field storage."
+        "Jira API resilience built in — 100ms client-side pacing (10 req/s), exponential backoff with jitter that honours Retry-After, JSONB field storage."
       ],
       "metrics": [
         {
@@ -137,8 +137,8 @@
           "now": "1"
         }
       ],
-      "coverImage": "/uploads/yourpdf-dark.png",
-      "coverImageLight": "/uploads/yourpdf-light.png",
+      "coverImage": "/uploads/yourpdf-architecture.png",
+      "coverImageLight": "/uploads/yourpdf-architecture-light.png",
       "liveUrl": "https://yourpdf-frontend-vhkjwky42a-uc.a.run.app",
       "repoUrl": "https://github.com/unknown-spec10/YourPDF"
     }
