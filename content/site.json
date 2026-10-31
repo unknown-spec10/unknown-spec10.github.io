@@ -25,7 +25,7 @@
       "slug": "career-guidance-ai",
       "name": "Career Guidance AI",
       "alias": "Zero-model parse",
-      "stack": "FastAPI · SQLAlchemy · pgvector · ONNX MiniLM · Caddy · React",
+      "stack": "FastAPI · SQLAlchemy · pgvector · local embeddings · Caddy · React",
       "points": [
         "Deterministic parse: pdfplumber with a pdfminer and pdftotext fallback, plus OCR only when a page is scanned — zero model calls in the parse path.",
         "A confidence score gates everything downstream: 0.75 and above is accepted, 0.50 to 0.75 goes to human review, below that fails before any embedding or matching runs.",
@@ -165,8 +165,8 @@
     },
     {
       "id": 5,
-      "group": "LLM APIs",
-      "items": "Gemini 2.5 Flash, gemini-embedding-2-preview, Groq (LLaMA 3.3 70b), Anthropic API"
+      "group": "LLM integration",
+      "items": "Prompt design, structured output, streaming responses, embeddings, retrieval pipelines, provider-agnostic adapters"
     },
     {
       "id": 6,
