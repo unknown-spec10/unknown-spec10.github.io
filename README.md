@@ -16,7 +16,7 @@ losing, which is why `min-instances=0` is safe.
 | Theme | Dark and light, dark-first, `data-theme` on `<html>`, set before paint |
 | Images | Committed under `public/uploads/`, dark and light variant per project |
 | Runtime deps | `next`, `react`, `react-dom`, `zod` — nothing else |
-| Hosting | Google Cloud Run, container, `output: "standalone"` |
+| Hosting | GitHub Pages, static export, deployed by GitHub Actions |
 
 The page prerenders to static HTML at build time (`○ /` in the build output), so
 a request never touches a database.
@@ -81,23 +81,27 @@ npm run build        # production build
 npm run start        # serve the production build
 ```
 
-## Deploy to Cloud Run
+## Deploy
+
+Pushing to `main` triggers `.github/workflows/pages.yml`, which runs
+`next build` with `PAGES_BUILD=1` (static export), deletes the dev-only routes
+from the runner checkout, and publishes `out/` to GitHub Pages.
 
 ```bash
-gcloud run deploy deep-podder-portfolio \
-  --source . \
-  --region asia-south1 \
-  --allow-unauthenticated \
-  --min-instances 0 \
-  --max-instances 2 \
-  --cpu 1 --memory 512Mi \
-  --port 8080
+npm run publish     # commits content changes and pushes; CI deploys
 ```
 
-`--source .` builds the `Dockerfile` with Cloud Build. Cold start is about a
-second and there is no state to restore, because there is no state.
+Live at **https://unknown-spec10.github.io**.
 
-After a content change: `npm run publish`, then re-run the deploy command.
+Two behaviours worth knowing:
+
+- GitHub Pages cannot send custom headers, so the CSP/HSTS set in
+  `next.config.mjs` applies only where those headers are supported. On Pages the
+  build warns that custom routes are ignored.
+- Branch deployments need a `.nojekyll` file at the published root, otherwise
+  Jekyll drops the `_next` folder and every stylesheet and script 404s. The
+  workflow uploads the artifact (no Jekyll), and `npm run publish` writes one
+  into `out/` anyway.
 
 ## Repository layout
 
