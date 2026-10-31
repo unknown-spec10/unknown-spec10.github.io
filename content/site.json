@@ -24,27 +24,25 @@
       "id": 1,
       "slug": "career-guidance-ai",
       "name": "Career Guidance AI",
-      "alias": "Career Sync",
+      "alias": "Zero-model parse",
       "stack": "FastAPI · pgvector · Groq · Gemini · React · Docker",
       "points": [
-        "Multi-stage resume parsing: pdfplumber with a Gemini Vision fallback, and semaphore-controlled asyncio.gather firing six parallel section-extraction prompts.",
-        "N+1 queries removed from the recommendation engine, plus a dual-layer embedding cache in front of Gemini.",
-        "28,016-line backend, 72 REST endpoints, 304 tests — blocking LLM and SSE calls offloaded to worker threads."
+        "Deterministic parse: pdfplumber with a pdfminer and pdftotext fallback, plus OCR only when a page is scanned — zero model calls in the parse path.",
+        "A confidence score gates everything downstream: 0.75 and above is accepted, 0.50 to 0.75 goes to human review, below that fails before any embedding or matching runs.",
+        "28,016-line backend, 73 routes, 32 tables, 304 tests — a three-tier embedding cache keyed by payload hash, and eager loading that removed the ranking loop N+1."
       ],
       "metrics": [
         {
-          "label": "Parse wall time",
-          "was": "12s",
-          "now": "3.5s"
+          "label": "Model calls to parse",
+          "now": "0"
         },
         {
-          "label": "Queries per run",
-          "was": "301",
-          "now": "4"
+          "label": "Routes",
+          "now": "73"
         },
         {
-          "label": "Gemini calls cut",
-          "now": "~99%"
+          "label": "Test suite",
+          "now": "304"
         }
       ],
       "coverImage": "/uploads/career-guidance-ai.png",
@@ -57,26 +55,25 @@
       "id": 2,
       "slug": "insurance-document-handler",
       "name": "Insurance Policy Document Handler",
-      "alias": "KYC portal",
+      "alias": "Versioned vault",
       "stack": "FastAPI · AWS RDS/S3/SNS · Redis · PostgreSQL",
       "points": [
-        "High-concurrency KYC portal: concurrent S3 presigned URL generation through asyncio.gather across a fully async stack (asyncpg, aioboto3).",
-        "Redis dashboard caching with SCAN-driven invalidation and composite indexes; SHA-256 checksums on stored files; five-year retention cleanup. 5,089 lines, 36 endpoints."
+        "Versioned document store keyed by vehicle registration: upload assigns max+1, flips the previous row to superseded, and enforces uniqueness on (registration, type, version).",
+        "S3 writes fan out concurrently inside the same database transaction, so a failure mid-upload rolls back every row while objects already written stay in the bucket — the trade-off is documented rather than hidden.",
+        "Reads are presigned for one hour instead of proxied, failing per document; a five-year retention window is anchored to policy expiry and purged only by an explicit, dry-run-first admin action."
       ],
       "metrics": [
         {
-          "label": "Multi-document view",
-          "was": "776ms",
-          "now": "2.3ms"
+          "label": "Endpoints",
+          "now": "36"
         },
         {
-          "label": "RDS query",
-          "was": "1,178ms",
-          "now": "<1ms"
+          "label": "Tables",
+          "now": "6"
         },
         {
-          "label": "Duplicate storage saved",
-          "now": "100%"
+          "label": "Retention",
+          "now": "5 years"
         }
       ],
       "coverImage": "/uploads/kyc-architecture.png",
@@ -88,24 +85,25 @@
       "id": 3,
       "slug": "jirasync",
       "name": "JiraSync",
-      "alias": "Jira → Power BI ETL",
+      "alias": "Two loops",
       "stack": "FastAPI · PostgreSQL · APScheduler · asyncpg",
       "points": [
-        "Async ETL service replacing a fragile Appfire OData connector: a local Postgres warehouse, advisory locks to stop overlapping scheduler runs, and schema-drift alerts into Slack and Teams.",
-        "Jira API resilience built in — 100ms client-side pacing (10 req/s), exponential backoff with jitter that honours Retry-After, JSONB field storage."
+        "Replaces a fragile Appfire OData connector with a Postgres warehouse Power BI reads directly, using JSONB expression indexes so project and priority slicers do not scan.",
+        "Two cadences: a 15-minute watermark sync that cannot see deletions, and a nightly full ID-set diff that exists only to catch them — plus advisory locks that make an overlapping run a silent skip.",
+        "Jira client pacing of 100 ms per call with five attempts, exponential backoff at 2.5x and Retry-After honoured; schema drift against field_map alerts to Slack."
       ],
       "metrics": [
         {
-          "label": "Incremental sync",
-          "now": "<3s"
+          "label": "Sync cadence",
+          "now": "15 min"
         },
         {
-          "label": "JSONB nested query",
-          "now": "sub-12ms"
+          "label": "Mapped fields",
+          "now": "51"
         },
         {
-          "label": "Smaller API payloads",
-          "now": "~90%"
+          "label": "Indexes on issues",
+          "now": "6"
         }
       ],
       "coverImage": "/uploads/jirasync-architecture.png",
@@ -117,16 +115,17 @@
       "id": 4,
       "slug": "yourpdf",
       "name": "YourPDF",
-      "alias": "27 document tools",
+      "alias": "28 tool routes",
       "stack": "Next.js · FastAPI · pypdf · Ghostscript · Tesseract · Docker · Cloud Run",
       "points": [
-        "Twenty-seven PDF, image and office tools behind one API — every job returns in the request that started it, with no queue and no polling.",
-        "Files are processed server-side and deleted immediately after the response; no accounts, no trackers, no stored output."
+        "Twenty-eight PDF, image and office tools behind one API — every job returns inside the request that started it, with no queue, no worker and no polling.",
+        "Four external binaries do the work (Ghostscript, LibreOffice, OCRmyPDF with Tesseract, poppler) against temp files under /app/tmp that are removed in a finally block.",
+        "Files are processed server-side and deleted after the response; no accounts, no trackers, no stored output, and password operations never touch disk."
       ],
       "metrics": [
         {
-          "label": "Tool pages",
-          "now": "27"
+          "label": "Tool routes",
+          "now": "28"
         },
         {
           "label": "Background jobs",
