@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Everything is public except the development-only editor, which a production
+# build does not contain anyway.
+Disallow: /admin
+Disallow: /api
