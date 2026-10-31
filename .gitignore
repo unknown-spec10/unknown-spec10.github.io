@@ -24,3 +24,6 @@ data/
 # static export
 out/
 .pages-excluded/
+
+# publish staging
+.pages-deploy/
