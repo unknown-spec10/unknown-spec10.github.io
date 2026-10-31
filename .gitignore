@@ -1,0 +1,22 @@
+# dependencies
+node_modules/
+
+# next
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# env
+.env
+.env*.local
+
+# local database (one-off export only; content now lives in content/site.json)
+data/
+
+# tooling
+*.log
+.DS_Store
+
+# one-time admin credential file
+.admin-credentials.txt

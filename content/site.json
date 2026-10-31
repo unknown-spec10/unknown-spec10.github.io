@@ -1,0 +1,178 @@
+{
+  "profile": {
+    "name": "Deep Podder",
+    "role": "Backend / AI",
+    "headline": "Backend and AI engineer building",
+    "headlineAccent": "production-grade",
+    "headlineTail": "RAG systems and async APIs.",
+    "intro": "Async FastAPI backends, vector search, and cloud-integrated data pipelines — designed for concurrency, then measured against real numbers.",
+    "introStrong": "vector search",
+    "location": "Kolkata, India",
+    "availability": "Available",
+    "email": "conect.deeppodder@gmail.com",
+    "linkedin": "https://linkedin.com/in/deeppodder2005",
+    "github": "https://github.com/unknown-spec10",
+    "resumeUrl": "/deep-podder-resume.pdf",
+    "degree": "Bachelor of Computer Applications",
+    "institution": "Institute of Engineering & Management, Kolkata",
+    "graduation": "2026",
+    "focus": "RAG · async backends",
+    "focusSub": "LLM pipelines, vector search"
+  },
+  "projects": [
+    {
+      "id": 1,
+      "slug": "career-guidance-ai",
+      "name": "Career Guidance AI",
+      "alias": "Career Sync",
+      "stack": "FastAPI · pgvector · Groq · Gemini · React · Docker",
+      "points": [
+        "Multi-stage resume parsing: pdfplumber with a Gemini Vision fallback, and semaphore-controlled asyncio.gather firing six parallel section-extraction prompts.",
+        "N+1 queries removed from the recommendation engine, plus a dual-layer embedding cache in front of Gemini.",
+        "51,000-line backend, 91 REST endpoints, 31 tables, a 106-test suite — blocking LLM and SSE calls offloaded to worker threads."
+      ],
+      "metrics": [
+        {
+          "label": "Parse wall time",
+          "was": "12s",
+          "now": "3.5s"
+        },
+        {
+          "label": "Queries per run",
+          "was": "301",
+          "now": "4"
+        },
+        {
+          "label": "Gemini calls cut",
+          "now": "~99%"
+        }
+      ],
+      "coverImage": "/uploads/career-sync-dark.png",
+      "coverImageLight": "/uploads/career-sync-light.png",
+      "liveUrl": "https://career-guidance-flame.vercel.app",
+      "repoUrl": "",
+      "published": true
+    },
+    {
+      "id": 2,
+      "slug": "insurance-document-handler",
+      "name": "Insurance Policy Document Handler",
+      "alias": "KYC portal",
+      "stack": "FastAPI · AWS RDS/S3/SNS · Redis · PostgreSQL",
+      "points": [
+        "High-concurrency KYC portal: concurrent S3 presigned URL generation through asyncio.gather across a fully async stack (asyncpg, aioboto3).",
+        "Redis dashboard caching with SCAN-driven invalidation and composite indexes; SHA-256 duplicate blocking; five-year retention cleanup. 8,300 lines, 27 endpoints."
+      ],
+      "metrics": [
+        {
+          "label": "Multi-document view",
+          "was": "776ms",
+          "now": "2.3ms"
+        },
+        {
+          "label": "RDS query",
+          "was": "1,178ms",
+          "now": "<1ms"
+        },
+        {
+          "label": "Duplicate storage saved",
+          "now": "100%"
+        }
+      ],
+      "coverImage": "/uploads/kyc-architecture.png",
+      "coverImageLight": "/uploads/kyc-architecture-light.png",
+      "liveUrl": "",
+      "repoUrl": ""
+    },
+    {
+      "id": 3,
+      "slug": "jirasync",
+      "name": "JiraSync",
+      "alias": "Jira → Power BI ETL",
+      "stack": "FastAPI · PostgreSQL · APScheduler · asyncpg",
+      "points": [
+        "Async ETL service replacing a fragile Appfire OData connector: a local Postgres warehouse, advisory locks to stop overlapping scheduler runs, and schema-drift alerts into Slack and Teams.",
+        "Jira API resilience built in — 10 req/s client-side pacing, five-attempt exponential backoff, JSONB field storage."
+      ],
+      "metrics": [
+        {
+          "label": "Incremental sync",
+          "now": "<3s"
+        },
+        {
+          "label": "JSONB nested query",
+          "now": "sub-12ms"
+        },
+        {
+          "label": "Smaller API payloads",
+          "now": "~90%"
+        }
+      ],
+      "coverImage": "/uploads/jirasync-architecture.png",
+      "coverImageLight": "/uploads/jirasync-architecture-light.png",
+      "liveUrl": "",
+      "repoUrl": ""
+    },
+    {
+      "id": 4,
+      "slug": "yourpdf",
+      "name": "YourPDF",
+      "alias": "27 document tools",
+      "stack": "Next.js · FastAPI · pypdf · Ghostscript · Tesseract · Docker · Cloud Run",
+      "points": [
+        "Twenty-seven PDF, image and office tools behind one API — every job returns in the request that started it, with no queue and no polling.",
+        "Files are processed server-side and deleted immediately after the response; no accounts, no trackers, no stored output."
+      ],
+      "metrics": [
+        {
+          "label": "Tool pages",
+          "now": "27"
+        },
+        {
+          "label": "Background jobs",
+          "now": "0"
+        },
+        {
+          "label": "Requests per job",
+          "now": "1"
+        }
+      ],
+      "coverImage": "/uploads/yourpdf-dark.png",
+      "coverImageLight": "/uploads/yourpdf-light.png",
+      "liveUrl": "https://yourpdf-frontend-vhkjwky42a-uc.a.run.app",
+      "repoUrl": "https://github.com/unknown-spec10/YourPDF"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": 1,
+      "group": "Backend",
+      "items": "Python, FastAPI, async Python (asyncpg, aioboto3), REST API design, WebSockets, SSE streaming, JWT & OAuth2, Celery, Redis, APScheduler"
+    },
+    {
+      "id": 2,
+      "group": "AI / ML",
+      "items": "Large language models, RAG pipelines, semantic caching, parent-child chunking, FlashRank reranking, LangChain, LangGraph, LlamaIndex, hallucination mitigation, multimodal embeddings"
+    },
+    {
+      "id": 3,
+      "group": "Data",
+      "items": "PostgreSQL, pgvector, ChromaDB, Redis, MySQL, JSONB, indexing, query optimisation, ACID transactions, Alembic migrations"
+    },
+    {
+      "id": 4,
+      "group": "Cloud",
+      "items": "AWS (EC2, S3 SSE-KMS, RDS, SNS), Docker, Supabase, Vercel, deployment pipelines"
+    },
+    {
+      "id": 5,
+      "group": "LLM APIs",
+      "items": "Gemini 2.5 Flash, gemini-embedding-2-preview, Groq (LLaMA 3.3 70b), Anthropic API"
+    },
+    {
+      "id": 6,
+      "group": "Tooling",
+      "items": "Git, pdfplumber, rapidfuzz, Streamlit, watchdog, httpx, Fernet encryption, agentic workflows"
+    }
+  ]
+}
