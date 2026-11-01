@@ -27,3 +27,6 @@ out/
 
 # publish staging
 .pages-deploy/
+
+# Local OpenCode project skills (personal, not shared)
+.opencode/
