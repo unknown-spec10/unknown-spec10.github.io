@@ -236,9 +236,25 @@ export default function Page() {
                       {project.liveUrl || project.repoUrl ? (
                         <div className="proj__links">
                           {project.liveUrl ? (
-                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                              Live demo <External />
-                            </a>
+                            // Demos are private (Cloud Run behind IAP, or decommissioned), so the
+                            // CTA asks for access instead of sending visitors to a sign-in wall.
+                            // Set `demoAccess: "live"` on a project in content/site.json to render
+                            // it as a normal external "Live demo" link again.
+                            project.demoAccess === "live" ? (
+                              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                                Live demo <External />
+                              </a>
+                            ) : (
+                              <a
+                                href={`mailto:conect.deeppodder@gmail.com?subject=${encodeURIComponent(
+                                  `Demo request: ${project.name}`
+                                )}&body=${encodeURIComponent(
+                                  `Hi Deep, I'd like to try the ${project.name} demo. Who can I ask for access?\n`
+                                )}`}
+                              >
+                                Request demo
+                              </a>
+                            )
                           ) : null}
                           {project.repoUrl ? (
                             <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">

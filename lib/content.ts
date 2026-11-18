@@ -13,6 +13,9 @@ export type Project = {
   coverImage: string;
   coverImageLight: string;
   liveUrl: string;
+  // "live" keeps the old external "Live demo" link; anything else (or absent) renders
+  // "Request demo" as a mailto, so a gated demo never sends visitors to a sign-in wall.
+  demoAccess?: "live" | "request";
   repoUrl: string;
   published?: boolean;
 };
