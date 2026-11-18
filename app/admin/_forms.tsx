@@ -103,6 +103,10 @@ export function ProfileForm({
         </Field>
       </div>
 
+      <Field label="X (Twitter) URL" hint="Rendered as an X link in the contact list; leave empty to hide it.">
+        <input name="x" defaultValue={profile.x} />
+      </Field>
+
       <div className="grid3">
         <Field label="Degree">
           <input name="degree" defaultValue={profile.degree} />

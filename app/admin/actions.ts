@@ -31,6 +31,7 @@ const profileSchema = z.object({
   email: emailSchema,
   linkedin: z.string().trim().url().max(300).or(z.literal("")),
   github: z.string().trim().url().max(300).or(z.literal("")),
+  x: z.string().trim().url().max(300).or(z.literal("")),
   resumeUrl: z.string().trim().max(300),
   degree: z.string().trim().max(160),
   institution: z.string().trim().max(200),

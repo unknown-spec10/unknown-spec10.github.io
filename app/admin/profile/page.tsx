@@ -30,6 +30,7 @@ export default async function ProfilePage() {
     email: row.email,
     linkedin: row.linkedin,
     github: row.github,
+    x: row.x ?? "",
     resumeUrl: row.resumeUrl,
     degree: row.degree,
     institution: row.institution,

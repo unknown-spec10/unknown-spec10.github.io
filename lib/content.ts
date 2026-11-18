@@ -35,6 +35,7 @@ export type Profile = {
   email: string;
   linkedin: string;
   github: string;
+  x: string;
   resumeUrl: string;
   degree: string;
   institution: string;

@@ -147,7 +147,7 @@ export default function Page() {
                   <dt className="spec__k">Degree</dt>
                   <dd className="spec__v">
                     {p.degree}
-                    <small>Graduating {p.graduation}</small>
+                    <small>Graduated {p.graduation}</small>
                   </dd>
                 </div>
                 <div className="spec__row">
@@ -300,7 +300,7 @@ export default function Page() {
                 <dd>
                   <strong>{p.degree}</strong> <span>— {p.institution}</span>
                 </dd>
-                <dt style={{ marginTop: 12 }}>Graduating</dt>
+                <dt style={{ marginTop: 12 }}>Graduated</dt>
                 <dd style={{ marginTop: 12 }}>{p.graduation}</dd>
               </dl>
             </section>
@@ -336,6 +336,14 @@ export default function Page() {
                   <li>
                     <a className="contact__link" href={p.github} target="_blank" rel="noopener noreferrer">
                       GitHub <External />
+                      <span className="sr-only">opens in a new tab</span>
+                    </a>
+                  </li>
+                ) : null}
+                {p.x ? (
+                  <li>
+                    <a className="contact__link" href={p.x} target="_blank" rel="noopener noreferrer">
+                      X <External />
                       <span className="sr-only">opens in a new tab</span>
                     </a>
                   </li>

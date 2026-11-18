@@ -12,6 +12,7 @@
     "email": "conect.deeppodder@gmail.com",
     "linkedin": "https://linkedin.com/in/deeppodder2005",
     "github": "https://github.com/unknown-spec10",
+    "x": "https://x.com/deep_podder17",
     "resumeUrl": "/deep-podder-resume.pdf",
     "degree": "Bachelor of Computer Applications",
     "institution": "Institute of Engineering & Management, Kolkata",
@@ -29,7 +30,7 @@
       "points": [
         "Deterministic parse: pdfplumber with a pdfminer and pdftotext fallback, plus OCR only when a page is scanned — zero model calls in the parse path.",
         "A confidence score gates everything downstream: 0.75 and above is accepted, 0.50 to 0.75 goes to human review, below that fails before any embedding or matching runs.",
-        "28,016-line backend, 73 routes, 32 tables, 304 tests — a three-tier embedding cache keyed by payload hash, and eager loading that removed the ranking loop N+1."
+        "28,358-line backend, 76 routes, 32 tables, 304 tests — a three-tier embedding cache keyed by payload hash, and eager loading that removed the ranking loop N+1."
       ],
       "metrics": [
         {
@@ -38,7 +39,7 @@
         },
         {
           "label": "Routes",
-          "now": "73"
+          "now": "76"
         },
         {
           "label": "Test suite",
@@ -65,7 +66,7 @@
       "metrics": [
         {
           "label": "Endpoints",
-          "now": "36"
+          "now": "32"
         },
         {
           "label": "Tables",
@@ -118,14 +119,14 @@
       "alias": "28 tool routes",
       "stack": "Next.js · FastAPI · pypdf · Ghostscript · Tesseract · Docker · Cloud Run",
       "points": [
-        "Twenty-eight PDF, image and office tools behind one API — every job returns inside the request that started it, with no queue, no worker and no polling.",
+        "Twenty-seven PDF, image and office tools behind one API — every job returns inside the request that started it, with no queue, no worker and no polling.",
         "Four external binaries do the work (Ghostscript, LibreOffice, OCRmyPDF with Tesseract, poppler) against temp files under /app/tmp that are removed in a finally block.",
         "Files are processed server-side and deleted after the response; no accounts, no trackers, no stored output, and password operations never touch disk."
       ],
       "metrics": [
         {
           "label": "Tool routes",
-          "now": "28"
+          "now": "27"
         },
         {
           "label": "Background jobs",
