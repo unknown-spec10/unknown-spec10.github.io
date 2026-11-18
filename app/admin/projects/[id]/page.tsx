@@ -50,6 +50,7 @@ export default async function EditProjectPage({ params }: { params: Promise<{ id
           coverImage: project.coverImage,
           coverImageLight: project.coverImageLight,
           liveUrl: project.liveUrl,
+          demoAccess: project.demoAccess ?? "request",
           repoUrl: project.repoUrl,
           published,
         }}

@@ -6,18 +6,24 @@
  * commit the content and push — there is no build or upload step locally.
  */
 import { execFileSync } from "node:child_process";
+import { existsSync } from "node:fs";
+
+// No shell: on Windows `shell: true` joins the argv into one string and cmd.exe re-splits it, so
+// `git commit -m "content: update 2026-11-17 18:42"` became `git commit -m content: update ...`
+// and failed with `pathspec 'update' did not match any file(s) known to git`.
+const GIT = process.platform === "win32" ? "git.exe" : "git";
 
 const run = (args, opts = {}) =>
-  execFileSync("git", args, {
-    stdio: "inherit",
-    shell: process.platform === "win32",
-    ...opts,
-  });
+  execFileSync(GIT, args, { stdio: "inherit", ...opts });
 
 const quiet = (args) =>
-  execFileSync("git", args, { encoding: "utf8", shell: process.platform === "win32" }).trim();
+  execFileSync(GIT, args, { encoding: "utf8" }).trim();
 
-run(["add", "-A", "content", "public/uploads"]);
+// `public/uploads` is optional — a site whose covers are remote URLs has no such directory, and
+// `git add` on a missing path fails the whole publish.
+const paths = ["-A", "content"];
+if (existsSync("public/uploads")) paths.push("public/uploads");
+run(["add", ...paths]);
 
 const staged = quiet(["diff", "--cached", "--name-only"]);
 if (!staged) {

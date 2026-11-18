@@ -142,6 +142,7 @@ export function ProjectForm({
     coverImage: string;
     coverImageLight: string;
     liveUrl: string;
+    demoAccess?: "live" | "request";
     repoUrl: string;
     published: boolean;
   };
@@ -245,6 +246,16 @@ export function ProjectForm({
           <input name="repoUrl" defaultValue={project.repoUrl} />
         </Field>
       </div>
+
+      <Field label="Demo link opens">
+        {/* "Request demo" sends visitors to a prefilled email instead of a sign-in wall, which is
+            what a private (IAP-gated) or decommissioned demo needs. Use "Live demo" only when the
+            URL is genuinely public. */}
+        <select name="demoAccess" defaultValue={project.demoAccess ?? "request"}>
+          <option value="request">Request demo (email link) — private or gated demo</option>
+          <option value="live">Live demo (external link) — publicly reachable</option>
+        </select>
+      </Field>
 
       <label className="check">
         <input type="checkbox" name="published" defaultChecked={project.published} />

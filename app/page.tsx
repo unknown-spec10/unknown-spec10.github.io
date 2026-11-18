@@ -246,10 +246,10 @@ export default function Page() {
                               </a>
                             ) : (
                               <a
-                                href={`mailto:conect.deeppodder@gmail.com?subject=${encodeURIComponent(
+                                href={`mailto:${p.email}?subject=${encodeURIComponent(
                                   `Demo request: ${project.name}`
                                 )}&body=${encodeURIComponent(
-                                  `Hi Deep, I'd like to try the ${project.name} demo. Who can I ask for access?\n`
+                                  `Hi ${p.name.split(" ")[0]}, I'd like to try the ${project.name} demo. Who can I ask for access?\n`
                                 )}`}
                               >
                                 Request demo

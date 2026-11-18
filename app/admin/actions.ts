@@ -66,6 +66,7 @@ const projectSchema = z.object({
   coverImage: z.string().trim().max(500),
   coverImageLight: z.string().trim().max(500),
   liveUrl: z.string().trim().max(400),
+  demoAccess: z.enum(["request", "live"]).default("request"),
   repoUrl: z.string().trim().max(400),
   published: z.string().optional(),
 });
@@ -116,6 +117,7 @@ export async function createProjectAction() {
     coverImage: "",
     coverImageLight: "",
     liveUrl: "",
+    demoAccess: "request",
     repoUrl: "",
     published: false,
   };
